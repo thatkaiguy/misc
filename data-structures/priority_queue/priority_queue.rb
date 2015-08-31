@@ -13,13 +13,21 @@ class PriorityQueue
   end
 
   def parent_index(n)
-    return nil if n == 1 || n > self.size
+    return nil if n <= 1 || n > self.size
 
     n / 2
   end
 
-  def young_child_index(n)
+  def left_child_index(n)
+    return nil if n < 1 || (2 * n) > self.size
+
     2 * n
+  end
+
+  def right_child_index(n)
+    return nil if n < 1 || (2 * n) + 1 > self.size
+
+    (2 * n) + 1
   end
 
   def parent_node(n)
@@ -29,11 +37,15 @@ class PriorityQueue
   end
 
   def left_child_node(n)
-    @items[young_child_index(n)]
+    return nil if left_child_index(n).nil?
+
+    @items[left_child_index(n)]
   end
 
   def right_child_node(n)
-    @items[young_child_index(n) + 1]
+    return nil if right_child_index(n).nil?
+
+    @items[right_child_index(n)]
   end
 
   def bubble_up(n)
@@ -62,11 +74,11 @@ class PriorityQueue
     min_idx = n
 
     if (left_child && @items[min_idx] > left_child)
-      min_idx = young_child_index(n)
+      min_idx = left_child_index(n)
     end
 
     if (right_child && @items[min_idx] > right_child)
-      min_idx = young_child_index(n) + 1
+      min_idx = right_child_index(n)
     end
 
     if min_idx != n
