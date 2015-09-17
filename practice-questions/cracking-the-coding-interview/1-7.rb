@@ -16,6 +16,7 @@ end
 def set_zero(ary)
   # mutates input 'ary'
 
+  # TODO can use arrays here
   zeroed_rows = Set.new
   zeroed_cols = Set.new
 
