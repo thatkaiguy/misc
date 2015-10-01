@@ -1,12 +1,16 @@
 # generate all partitions of a number when given a positive integer
 
 def partitions(n)
-  return [[1]] if n == 1
+  partition(n, n, "")
+end
 
-  prev_partitions = partitions(n-1)
-  prev_partitions.map! do |el|
-    el << 1
+def partition(n, max, prefix)
+  if n == 0
+    puts prefix
+    return
   end
 
-  [[n]] + prev_partitions
+  [n, max].min.downto(1) do |curr_max|
+    partition(n - curr_max, curr_max, prefix + " " + curr_max.to_s)
+  end
 end
