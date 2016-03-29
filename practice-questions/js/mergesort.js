@@ -1,13 +1,13 @@
 // input: array of numbers
 // output: the input array sorted from least to greatest
 
-function mergeSort(arr) {
+function mergesort(arr) {
   arr = arr || [];
   if (arr.length < 2) return arr;
 
   var mid = Math.floor( arr.length / 2 );
-  var left = mergeSort( arr.slice( 0, mid ) );
-  var right = mergeSort( arr.slice( mid, arr.length ) );
+  var left = mergesort( arr.slice( 0, mid ) );
+  var right = mergesort( arr.slice( mid, arr.length ) );
 
   return merge(left, right);
 }
@@ -32,6 +32,6 @@ function merge(left, right) {
   return merged;
 }
 
-// console.log( mergeSort( [5, 2, 7, 3, 9, 9, 10] ) );
+// console.log( mergesort( [5, 2, 7, 3, 9, 9, 10] ) );
 
-module.exports = mergeSort;
+module.exports = mergesort;
